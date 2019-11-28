@@ -7,7 +7,12 @@ class CreateUserJobs < ActiveRecord::Migration[6.0]
       t.datetime :favorited_at
       t.datetime :viewed_at
       t.datetime :applied_at
+
       t.timestamps null: false
     end
+
+    add_index :user_jobs, :user_id
+    add_index :user_jobs, :job_id
+    add_index :user_jobs, [:user_id, :job_id]
   end
 end

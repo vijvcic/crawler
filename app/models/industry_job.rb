@@ -1,4 +1,4 @@
 class IndustryJob < ApplicationRecord
-  belongs_to :jobs
-  belongs_to :industries
+  belongs_to :job
+  belongs_to :industry
 end

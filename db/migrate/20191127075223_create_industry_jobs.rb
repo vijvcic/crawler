@@ -6,5 +6,8 @@ class CreateIndustryJobs < ActiveRecord::Migration[6.0]
 
       t.timestamps null: false
     end
+
+    add_index :industry_jobs, :job_id
+    add_index :industry_jobs, :industry_id
   end
 end

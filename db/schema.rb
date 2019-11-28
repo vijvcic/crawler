@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 2019_11_27_075301) do
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.text "description"
     t.string "address"
     t.string "url"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2019_11_27_075301) do
     t.integer "industry_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["industry_id"], name: "index_industry_jobs_on_industry_id"
+    t.index ["job_id"], name: "index_industry_jobs_on_job_id"
   end
 
   create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -73,6 +75,9 @@ ActiveRecord::Schema.define(version: 2019_11_27_075301) do
     t.datetime "applied_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_id"], name: "index_user_jobs_on_job_id"
+    t.index ["user_id", "job_id"], name: "index_user_jobs_on_user_id_and_job_id"
+    t.index ["user_id"], name: "index_user_jobs_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_075301) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_digest"], name: "index_users_on_reset_digest", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

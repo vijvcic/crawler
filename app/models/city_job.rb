@@ -1,4 +1,4 @@
 class CityJob < ApplicationRecord
-  belongs_to :jobs
-  belongs_to :cities
+  belongs_to :job
+  belongs_to :city
 end
